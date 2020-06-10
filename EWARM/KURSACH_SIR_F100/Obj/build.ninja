@@ -20,9 +20,11 @@ rule browsedata
 
 
 #Build steps
+build fonts.pbi : index fonts.xcl
 build global.pbi : index global.xcl
 build hd44780.pbi : index hd44780.xcl
 build main.pbi : index main.xcl
+build ssd1306.pbi : index ssd1306.xcl
 build stm32f1xx_hal_msp.pbi : index stm32f1xx_hal_msp.xcl
 build stm32f1xx_it.pbi : index stm32f1xx_it.xcl
 build system_stm32f1xx.pbi : index system_stm32f1xx.xcl
@@ -44,12 +46,13 @@ build stm32f1xx_ll_gpio.pbi : index stm32f1xx_ll_gpio.xcl
 build stm32f1xx_ll_rcc.pbi : index stm32f1xx_ll_rcc.xcl
 build stm32f1xx_ll_tim.pbi : index stm32f1xx_ll_tim.xcl
 build stm32f1xx_ll_utils.pbi : index stm32f1xx_ll_utils.xcl
-build KURSACH_SIR_F100_part0.pbi : link global.pbi hd44780.pbi main.pbi stm32f1xx_hal_msp.pbi stm32f1xx_it.pbi
-build KURSACH_SIR_F100_part1.pbi : link system_stm32f1xx.pbi stm32f1xx_hal.pbi stm32f1xx_hal_cortex.pbi stm32f1xx_hal_dma.pbi stm32f1xx_hal_flash.pbi
-build KURSACH_SIR_F100_part2.pbi : link stm32f1xx_hal_flash_ex.pbi stm32f1xx_hal_gpio.pbi stm32f1xx_hal_gpio_ex.pbi stm32f1xx_hal_pwr.pbi stm32f1xx_hal_rcc.pbi
-build KURSACH_SIR_F100_part3.pbi : link stm32f1xx_hal_rcc_ex.pbi stm32f1xx_hal_tim.pbi stm32f1xx_hal_tim_ex.pbi stm32f1xx_ll_dma.pbi stm32f1xx_ll_exti.pbi
-build KURSACH_SIR_F100_part4.pbi : link stm32f1xx_ll_gpio.pbi stm32f1xx_ll_rcc.pbi stm32f1xx_ll_tim.pbi stm32f1xx_ll_utils.pbi
-build KURSACH_SIR_F100.pbd : link KURSACH_SIR_F100_part0.pbi KURSACH_SIR_F100_part1.pbi KURSACH_SIR_F100_part2.pbi KURSACH_SIR_F100_part3.pbi KURSACH_SIR_F100_part4.pbi
+build KURSACH_SIR_F100_part0.pbi : link fonts.pbi global.pbi hd44780.pbi main.pbi ssd1306.pbi
+build KURSACH_SIR_F100_part1.pbi : link stm32f1xx_hal_msp.pbi stm32f1xx_it.pbi system_stm32f1xx.pbi stm32f1xx_hal.pbi stm32f1xx_hal_cortex.pbi
+build KURSACH_SIR_F100_part2.pbi : link stm32f1xx_hal_dma.pbi stm32f1xx_hal_flash.pbi stm32f1xx_hal_flash_ex.pbi stm32f1xx_hal_gpio.pbi stm32f1xx_hal_gpio_ex.pbi
+build KURSACH_SIR_F100_part3.pbi : link stm32f1xx_hal_pwr.pbi stm32f1xx_hal_rcc.pbi stm32f1xx_hal_rcc_ex.pbi stm32f1xx_hal_tim.pbi stm32f1xx_hal_tim_ex.pbi
+build KURSACH_SIR_F100_part4.pbi : link stm32f1xx_ll_dma.pbi stm32f1xx_ll_exti.pbi stm32f1xx_ll_gpio.pbi stm32f1xx_ll_rcc.pbi stm32f1xx_ll_tim.pbi
+build KURSACH_SIR_F100_part5.pbi : link stm32f1xx_ll_utils.pbi
+build KURSACH_SIR_F100.pbd : link KURSACH_SIR_F100_part0.pbi KURSACH_SIR_F100_part1.pbi KURSACH_SIR_F100_part2.pbi KURSACH_SIR_F100_part3.pbi KURSACH_SIR_F100_part4.pbi KURSACH_SIR_F100_part5.pbi
 build KURSACH_SIR_F100.pbw : browsedata KURSACH_SIR_F100.pbd
 
 
