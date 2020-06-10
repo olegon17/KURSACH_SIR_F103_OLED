@@ -164,6 +164,8 @@
             <file>$PROJ_DIR$\..\Inc\ssd1306.h</file>
             <file>$PROJ_DIR$\..\Src\ssd1306.c</file>
             <file>$PROJ_DIR$\..\Inc\fonts.h</file>
+            <file>$TOOLKIT_DIR$\inc\c\string.h</file>
+            <file>$TOOLKIT_DIR$\inc\c\DLib_Product_string.h</file>
         </outputs>
         <file>
             <name>[ROOT_NODE]</name>
@@ -178,10 +180,6 @@
             <name>$PROJ_DIR$\..\Src\main.c</name>
             <outputs>
                 <tool>
-                    <name>ICCARM</name>
-                    <file> 58</file>
-                </tool>
-                <tool>
                     <name>BICOMP</name>
                     <file> 111</file>
                 </tool>
@@ -193,7 +191,7 @@
             <inputs>
                 <tool>
                     <name>ICCARM</name>
-                    <file> 38 70 81 79 18 83 150 61 75 39 56 20 148 71 74 147 43 93 44 94 41 73 34 54 145 136 144 16 12 65 143 89 130 134 46 66 132 60 126 92 30 4 156</file>
+                    <file> 38 70 81 79 18 83 150 61 75 39 56 20 148 71 74 147 43 93 44 94 41 73 34 54 145 136 144 16 12 65 143 89 130 134 46 66 132 60 126 92 30 4 159 160 156 158 31</file>
                 </tool>
             </inputs>
         </file>
@@ -453,10 +451,6 @@
         <file>
             <name>$PROJ_DIR$\..\Src\stm32f1xx_it.c</name>
             <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 40</file>
-                </tool>
                 <tool>
                     <name>BICOMP</name>
                     <file> 110</file>
@@ -760,19 +754,27 @@
                     <file> 153</file>
                 </tool>
             </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 158 70 81 79 18 83 150 61 75 39 56 20 148 71 74 147 43 93 44 94 41 73 34 54 145 136 144 16 12 65</file>
+                </tool>
+            </inputs>
         </file>
         <file>
             <name>$PROJ_DIR$\..\Src\ssd1306.c</name>
             <outputs>
                 <tool>
-                    <name>ICCARM</name>
-                    <file> 154</file>
-                </tool>
-                <tool>
                     <name>BICOMP</name>
                     <file> 152</file>
                 </tool>
             </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 156 70 81 79 18 83 150 61 75 39 56 20 148 71 74 147 43 93 44 94 41 73 34 54 145 136 144 16 12 65 158</file>
+                </tool>
+            </inputs>
         </file>
         <forcedrebuild>
             <name>[MULTI_TOOL]</name>

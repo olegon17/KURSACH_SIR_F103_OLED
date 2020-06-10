@@ -28,4 +28,5 @@ ssd1306.pbi: D:\GIT\KURSACH_SIR_F103_OLED\Src\ssd1306.c \
   D:\GIT\KURSACH_SIR_F103_OLED\EWARM/../Drivers/STM32F1xx_HAL_Driver/Inc\stm32f1xx_hal_cortex.h \
   D:\GIT\KURSACH_SIR_F103_OLED\EWARM/../Drivers/STM32F1xx_HAL_Driver/Inc\stm32f1xx_hal_flash.h \
   D:\GIT\KURSACH_SIR_F103_OLED\EWARM/../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h \
-  D:\GIT\KURSACH_SIR_F103_OLED\EWARM/../Drivers/STM32F1xx_HAL_Driver/Inc\stm32f1xx_hal_pwr.h
+  D:\GIT\KURSACH_SIR_F103_OLED\EWARM/../Drivers/STM32F1xx_HAL_Driver/Inc\stm32f1xx_hal_pwr.h \
+  D:\GIT\KURSACH_SIR_F103_OLED\EWARM/../Inc/fonts.h

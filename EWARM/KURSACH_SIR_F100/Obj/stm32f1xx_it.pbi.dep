@@ -42,4 +42,8 @@ stm32f1xx_it.pbi: D:\GIT\KURSACH_SIR_F103_OLED\Src\stm32f1xx_it.c \
   D:\GIT\KURSACH_SIR_F103_OLED\EWARM/../Inc\stm32f1xx_it.h \
   D:\GIT\KURSACH_SIR_F103_OLED\EWARM/../Inc\hd44780.h \
   D:\GIT\KURSACH_SIR_F103_OLED\EWARM/../Inc/lcd_cfg.h \
+  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\string.h \
+  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\DLib_Product_string.h \
+  D:\GIT\KURSACH_SIR_F103_OLED\EWARM/../Inc\ssd1306.h \
+  D:\GIT\KURSACH_SIR_F103_OLED\EWARM/../Inc/fonts.h \
   D:\GIT\KURSACH_SIR_F103_OLED\EWARM/../Inc\global.h

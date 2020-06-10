@@ -7,6 +7,8 @@
 #define BUTTON_2 GPIO_PIN_1
 #define BUTTON_3 GPIO_PIN_2
 
+#define COLOR Black
+#define FON White
 
 extern volatile unsigned short Enable_Player1;
 extern volatile unsigned short Enable_Player2;
@@ -20,52 +22,52 @@ static void ItoC(int x)
 	{
 		case 0:
 		{
-			ssd1306_WriteString("0",Font_11x18,Black);
+			ssd1306_WriteString("0",Font_11x18,COLOR);
 			break;
 		}
 		case 1:
 		{
-			ssd1306_WriteString("1",Font_11x18,Black);
+			ssd1306_WriteString("1",Font_11x18,COLOR);
 			break;
 		}
 		case 2:
 		{
-			ssd1306_WriteString("2",Font_11x18,Black);
+			ssd1306_WriteString("2",Font_11x18,COLOR);
 			break;
 		}
 		case 3:
 		{
-			ssd1306_WriteString("3",Font_11x18,Black);
+			ssd1306_WriteString("3",Font_11x18,COLOR);
 			break;
 		}
 		case 4:
 		{
-			ssd1306_WriteString("4",Font_11x18,Black);
+			ssd1306_WriteString("4",Font_11x18,COLOR);
 			break;
 		}
 		case 5:
 		{
-			ssd1306_WriteString("5",Font_11x18,Black);
+			ssd1306_WriteString("5",Font_11x18,COLOR);
 			break;
 		}
 		case 6:
 		{
-			ssd1306_WriteString("6",Font_11x18,Black);
+			ssd1306_WriteString("6",Font_11x18,COLOR);
 			break;
 		}
 		case 7:
 		{
-			ssd1306_WriteString("7",Font_11x18,Black);
+			ssd1306_WriteString("7",Font_11x18,COLOR);
 			break;
 		}
 		case 8:
 		{
-			ssd1306_WriteString("8",Font_11x18,Black);
+			ssd1306_WriteString("8",Font_11x18,COLOR);
 			break;
 		}
 		case 9:
 		{
-			ssd1306_WriteString("9",Font_11x18,Black);
+			ssd1306_WriteString("9",Font_11x18,COLOR);
 			break;
 		}
 	}
