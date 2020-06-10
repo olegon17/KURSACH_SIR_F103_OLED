@@ -40,4 +40,9 @@ main.pbi: D:\GIT\KURSACH_SIR_F103_OLED\Src\main.c \
   D:\GIT\KURSACH_SIR_F103_OLED\EWARM/../Drivers/STM32F1xx_HAL_Driver/Inc\stm32f1xx_ll_pwr.h \
   D:\GIT\KURSACH_SIR_F103_OLED\EWARM/../Drivers/STM32F1xx_HAL_Driver/Inc\stm32f1xx_ll_gpio.h \
   D:\GIT\KURSACH_SIR_F103_OLED\EWARM/../Drivers/STM32F1xx_HAL_Driver/Inc\stm32f1xx_ll_dma.h \
-  D:\GIT\KURSACH_SIR_F103_OLED\EWARM/../Drivers/STM32F1xx_HAL_Driver/Inc\stm32f1xx_ll_exti.h
+  D:\GIT\KURSACH_SIR_F103_OLED\EWARM/../Drivers/STM32F1xx_HAL_Driver/Inc\stm32f1xx_ll_exti.h \
+  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\string.h \
+  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\DLib_Product_string.h \
+  D:\GIT\KURSACH_SIR_F103_OLED\EWARM/../Inc\ssd1306.h \
+  D:\GIT\KURSACH_SIR_F103_OLED\EWARM/../Inc/fonts.h \
+  D:\GIT\KURSACH_SIR_F103_OLED\EWARM/../Inc\global.h
