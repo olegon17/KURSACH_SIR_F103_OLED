@@ -202,39 +202,6 @@ void SysTick_Handler(void)
 /******************************************************************************/
 
 /**
-  * @brief This function handles TIM1 update interrupt and TIM16 global interrupt.
-  */
-void TIM1_UP_TIM16_IRQHandler(void)
-{
-  /* USER CODE BEGIN TIM1_UP_TIM16_IRQn 0 */
-  LL_TIM_ClearFlag_UPDATE(TIM1);
-  
-  lcdGoto(1,0);
-  clockTime(T1_min/10);
-  clockTime(T1_min%10);
-  lcdPuts(":");
-  clockTime(T1_sec/10);
-  clockTime(T1_sec%10);
-  lcdPuts(":");
-  clockTime(T1_msec);
-  
-    lcdGoto(1,9);
-  clockTime(T2_min/10);
-  clockTime(T2_min%10);
-  lcdPuts(":");
-  clockTime(T2_sec/10);
-  clockTime(T2_sec%10);
-  lcdPuts(":");
-  clockTime(T2_msec);
-  
-  /* USER CODE END TIM1_UP_TIM16_IRQn 0 */
-  
-  /* USER CODE BEGIN TIM1_UP_TIM16_IRQn 1 */
-
-  /* USER CODE END TIM1_UP_TIM16_IRQn 1 */
-}
-
-/**
   * @brief This function handles TIM2 global interrupt.
   */
 void TIM2_IRQHandler(void)
@@ -282,118 +249,14 @@ void TIM2_IRQHandler(void)
 void TIM3_IRQHandler(void)
 {
   /* USER CODE BEGIN TIM3_IRQn 0 */
-  LL_TIM_ClearFlag_UPDATE(TIM3);
-  
-  LL_TIM_ClearFlag_UPDATE(TIM3);
-  
-  switch(Timer)
-  {
-  case Timer1:
-    if (Enable_Player1==1)
-    {
-      if(T1_msec==0)
-      {
-        if(T1_min==0&&T1_sec==0&&T1_msec==0)
-            {
-              
-              Enable_Player1=0;
-              Timer=Timer2;
-              break;
 
-            }
-        T1_msec=9;
-        
-        if(T1_sec==0)
-        {
-          T1_sec=59;
-         
-            T1_min--;
-          
-        }
-        else
-        {
-          T1_sec--;
-        }
-      }
-      else
-      {
-        T1_msec--;
-      }
-    }
-    break;
-  case Timer2:
-    if (Enable_Player2==1)
-    {
-      if(T2_msec==0)
-      {
-        if(T2_min==0&&T2_sec==0&&T2_msec==0)
-            {
-              
-              Enable_Player2=0;
-              Timer=Timer1;
-              break;
+  /* USER CODE END TIM3_IRQn 0 */
+  /* USER CODE BEGIN TIM3_IRQn 1 */
 
-            }
-        T2_msec=9;
-        
-        if(T2_sec==0)
-        {
-          T2_sec=59;
-         
-            T2_min--;
-          
-        }
-        else
-        {
-          T2_sec--;
-        }
-      }
-      else
-      {
-        T2_msec--;
-      }
-    }
-    break;
-    break;
-  }
-}
-/******************************************************************************/
-/* STM32F1xx Peripheral Interrupt Handlers                                    */
-/* Add here the Interrupt Handlers for the used peripherals.                  */
-/* For the available peripheral interrupt handler names,                      */
-/* please refer to the startup file (startup_stm32f1xx.s).                    */
-/******************************************************************************/
-
-/**
-  * @brief This function handles I2C1 event interrupt.
-  */
-void I2C1_EV_IRQHandler(void)
-{
-  /* USER CODE BEGIN I2C1_EV_IRQn 0 */
-
-  /* USER CODE END I2C1_EV_IRQn 0 */
-  HAL_I2C_EV_IRQHandler(&hi2c1);
-  /* USER CODE BEGIN I2C1_EV_IRQn 1 */
-
-  /* USER CODE END I2C1_EV_IRQn 1 */
-}
-
-/**
-  * @brief This function handles I2C1 error interrupt.
-  */
-void I2C1_ER_IRQHandler(void)
-{
-  /* USER CODE BEGIN I2C1_ER_IRQn 0 */
-
-  /* USER CODE END I2C1_ER_IRQn 0 */
-  HAL_I2C_ER_IRQHandler(&hi2c1);
-  /* USER CODE BEGIN I2C1_ER_IRQn 1 */
-
-  /* USER CODE END I2C1_ER_IRQn 1 */
+  /* USER CODE END TIM3_IRQn 1 */
 }
 
 /* USER CODE BEGIN 1 */
 
 /* USER CODE END 1 */
-
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
