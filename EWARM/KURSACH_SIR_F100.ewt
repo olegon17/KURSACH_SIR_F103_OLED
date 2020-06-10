@@ -1196,6 +1196,12 @@
         <group>
             <name>User</name>
             <file>
+                <name>$PROJ_DIR$\..\Src\fonts.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Inc\fonts.h</name>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\..\Src\global.c</name>
             </file>
             <file>
@@ -1212,6 +1218,12 @@
             </file>
             <file>
                 <name>$PROJ_DIR$\..\Src\main.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Src\ssd1306.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Inc\ssd1306.h</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\..\Src\stm32f1xx_hal_msp.c</name>
@@ -1266,6 +1278,24 @@
             </file>
             <file>
                 <name>$PROJ_DIR$\..\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_tim_ex.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_ll_dma.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_ll_exti.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_ll_gpio.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_ll_rcc.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_ll_tim.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_ll_utils.c</name>
             </file>
         </group>
     </group>

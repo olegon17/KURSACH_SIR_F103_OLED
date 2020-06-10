@@ -24,7 +24,9 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "hd44780.h"
+#include "ssd1306.h"
 #include "global.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -96,10 +98,24 @@ int main(void)
   MX_TIM2_Init();
   MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
+   ssd1306_Init();
+  HAL_Delay(1000);
+  ssd1306_Fill(Black);
+  ssd1306_UpdateScreen();
+
+  
+
+  ssd1306_SetCursor(23,23);
+  ssd1306_WriteString("MAMA",Font_11x18,White);
+
+  ssd1306_UpdateScreen();
+  HAL_Delay(1000);
+  
   lcdInit();
   lcdClrScr();
   lcdGoto(2,2);
   lcdPuts("SEMESTROVAYA");
+  
   T1_min=MIN;
   T1_sec=SEC;
   T1_msec=MSEC;
