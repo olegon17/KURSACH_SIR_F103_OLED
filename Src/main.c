@@ -6,7 +6,7 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2019 STMicroelectronics.
+  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
   * All rights reserved.</center></h2>
   *
   * This software component is licensed by ST under BSD 3-Clause license,
@@ -23,12 +23,9 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
 #include <string.h>
 #include "ssd1306.h"
 #include "global.h"
-
-
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -38,8 +35,6 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define COLOR Black
-#define FON White
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -51,16 +46,16 @@
 I2C_HandleTypeDef hi2c1;
 
 /* USER CODE BEGIN PV */
-I2C_HandleTypeDef hi2c1;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
+static void MX_I2C1_Init(void);
 static void MX_TIM1_Init(void);
 static void MX_TIM2_Init(void);
 static void MX_TIM3_Init(void);
-static void MX_I2C1_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -98,12 +93,12 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_I2C1_Init();
   MX_TIM1_Init();
   MX_TIM2_Init();
   MX_TIM3_Init();
-  MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
-   ssd1306_Init();
+ssd1306_Init();
   HAL_Delay(1000);
   ssd1306_Fill(FON);
   ssd1306_UpdateScreen();
@@ -149,32 +144,37 @@ int main(void)
   */
 void SystemClock_Config(void)
 {
-  RCC_OscInitTypeDef RCC_OscInitStruct = {0};
-  RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+  LL_FLASH_SetLatency(LL_FLASH_LATENCY_0);
 
-  /** Initializes the CPU, AHB and APB busses clocks 
-  */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
-  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
-  RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
-  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
-  if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+  if(LL_FLASH_GetLatency() != LL_FLASH_LATENCY_0)
   {
-    Error_Handler();
+    Error_Handler();  
   }
-  /** Initializes the CPU, AHB and APB busses clocks 
-  */
-  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
-                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
-  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI;
-  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
-  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+  LL_RCC_HSI_SetCalibTrimming(16);
+  LL_RCC_HSI_Enable();
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
+   /* Wait till HSI is ready */
+  while(LL_RCC_HSI_IsReady() != 1)
   {
-    Error_Handler();
+    
   }
+  LL_RCC_SetAHBPrescaler(LL_RCC_SYSCLK_DIV_1);
+  LL_RCC_SetAPB1Prescaler(LL_RCC_APB1_DIV_1);
+  LL_RCC_SetAPB2Prescaler(LL_RCC_APB2_DIV_1);
+  LL_RCC_SetSysClkSource(LL_RCC_SYS_CLKSOURCE_HSI);
+
+   /* Wait till System clock is ready */
+  while(LL_RCC_GetSysClkSource() != LL_RCC_SYS_CLKSOURCE_STATUS_HSI)
+  {
+  
+  }
+  LL_SetSystemCoreClock(8000000);
+
+   /* Update the time base */
+  if (HAL_InitTick (TICK_INT_PRIORITY) != HAL_OK)
+  {
+    Error_Handler();  
+  };
 }
 
 /**
@@ -343,8 +343,8 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
-  /*Configure GPIO pins : BUTTON1_Pin BUTTON2_Pin BUTTON3_Pin */
-  GPIO_InitStruct.Pin = BUTTON1_Pin|BUTTON2_Pin|BUTTON3_Pin;
+  /*Configure GPIO pins : BUUTON1_Pin BUUTON2_Pin BUUTON3_Pin */
+  GPIO_InitStruct.Pin = BUUTON1_Pin|BUUTON2_Pin|BUUTON3_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);

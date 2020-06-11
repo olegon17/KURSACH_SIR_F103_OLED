@@ -7,7 +7,7 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2019 STMicroelectronics.
+  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
   * All rights reserved.</center></h2>
   *
   * This software component is licensed by ST under BSD 3-Clause license,
@@ -69,24 +69,12 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define RS_Pin GPIO_PIN_2
-#define RS_GPIO_Port GPIOA
-#define E_Pin GPIO_PIN_3
-#define E_GPIO_Port GPIOA
-#define D4_Pin GPIO_PIN_4
-#define D4_GPIO_Port GPIOA
-#define D5_Pin GPIO_PIN_5
-#define D5_GPIO_Port GPIOA
-#define D6_Pin GPIO_PIN_6
-#define D6_GPIO_Port GPIOA
-#define D7_Pin GPIO_PIN_7
-#define D7_GPIO_Port GPIOA
-#define BUTTON1_Pin GPIO_PIN_12
-#define BUTTON1_GPIO_Port GPIOB
-#define BUTTON2_Pin GPIO_PIN_13
-#define BUTTON2_GPIO_Port GPIOB
-#define BUTTON3_Pin GPIO_PIN_14
-#define BUTTON3_GPIO_Port GPIOB
+#define BUTTON1_Pin GPIO_PIN_0
+#define BUTTON1_GPIO_Port GPIOA
+#define BUTTON2_Pin GPIO_PIN_1
+#define BUTTON2_GPIO_Port GPIOA
+#define BUTTON3_Pin GPIO_PIN_2
+#define BUTTON3_GPIO_Port GPIOA
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

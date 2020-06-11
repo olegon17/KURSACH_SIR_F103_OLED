@@ -6,7 +6,7 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2019 STMicroelectronics.
+  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
   * All rights reserved.</center></h2>
   *
   * This software component is licensed by ST under BSD 3-Clause license,
@@ -23,7 +23,6 @@
 #include "stm32f1xx_it.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
 #include <string.h>
 #include "ssd1306.h"
 #include "global.h"
@@ -46,7 +45,7 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN PV */
-extern I2C_HandleTypeDef hi2c1;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -60,7 +59,7 @@ extern I2C_HandleTypeDef hi2c1;
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
-
+extern I2C_HandleTypeDef hi2c1;
 /* USER CODE BEGIN EV */
 
 /* USER CODE END EV */
@@ -207,9 +206,6 @@ void SysTick_Handler(void)
 void TIM1_UP_IRQHandler(void)
 {
   /* USER CODE BEGIN TIM1_UP_IRQn 0 */
-
-  /* USER CODE END TIM1_UP_IRQn 0 */
-  /* USER CODE BEGIN TIM1_UP_IRQn 1 */
 LL_TIM_ClearFlag_UPDATE(TIM1);
 
   ssd1306_SetCursor(23,23);//?????????? ?????? ???????
@@ -231,6 +227,9 @@ LL_TIM_ClearFlag_UPDATE(TIM1);
   ItoC(T2_msec);
   
   ssd1306_UpdateScreen();
+  /* USER CODE END TIM1_UP_IRQn 0 */
+  /* USER CODE BEGIN TIM1_UP_IRQn 1 */
+
   /* USER CODE END TIM1_UP_IRQn 1 */
 }
 
@@ -240,7 +239,7 @@ LL_TIM_ClearFlag_UPDATE(TIM1);
 void TIM2_IRQHandler(void)
 {
   /* USER CODE BEGIN TIM2_IRQn 0 */
-  LL_TIM_ClearFlag_UPDATE(TIM2);
+LL_TIM_ClearFlag_UPDATE(TIM2);
   if (HAL_GPIO_ReadPin(GPIOKEY,BUTTON_1)==0)
   {
     if (Enable_Player1==1)
@@ -282,9 +281,6 @@ void TIM2_IRQHandler(void)
 void TIM3_IRQHandler(void)
 {
   /* USER CODE BEGIN TIM3_IRQn 0 */
-
-  /* USER CODE END TIM3_IRQn 0 */
-  /* USER CODE BEGIN TIM3_IRQn 1 */
 LL_TIM_ClearFlag_UPDATE(TIM3);
   switch(Timer)
   {
@@ -350,7 +346,38 @@ LL_TIM_ClearFlag_UPDATE(TIM3);
     break;
     break;
   }
+  /* USER CODE END TIM3_IRQn 0 */
+  /* USER CODE BEGIN TIM3_IRQn 1 */
+
   /* USER CODE END TIM3_IRQn 1 */
+}
+
+/**
+  * @brief This function handles I2C1 event interrupt.
+  */
+void I2C1_EV_IRQHandler(void)
+{
+  /* USER CODE BEGIN I2C1_EV_IRQn 0 */
+
+  /* USER CODE END I2C1_EV_IRQn 0 */
+  HAL_I2C_EV_IRQHandler(&hi2c1);
+  /* USER CODE BEGIN I2C1_EV_IRQn 1 */
+
+  /* USER CODE END I2C1_EV_IRQn 1 */
+}
+
+/**
+  * @brief This function handles I2C1 error interrupt.
+  */
+void I2C1_ER_IRQHandler(void)
+{
+  /* USER CODE BEGIN I2C1_ER_IRQn 0 */
+
+  /* USER CODE END I2C1_ER_IRQn 0 */
+  HAL_I2C_ER_IRQHandler(&hi2c1);
+  /* USER CODE BEGIN I2C1_ER_IRQn 1 */
+
+  /* USER CODE END I2C1_ER_IRQn 1 */
 }
 
 /* USER CODE BEGIN 1 */

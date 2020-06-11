@@ -29,17 +29,16 @@ extern "C" {
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f1xx_hal.h"
-#include "stm32f1xx_ll_tim.h"
-#include "stm32f1xx_ll_bus.h"
-#include "stm32f1xx_ll_cortex.h"
 #include "stm32f1xx_ll_rcc.h"
+#include "stm32f1xx_ll_bus.h"
 #include "stm32f1xx_ll_system.h"
+#include "stm32f1xx_ll_exti.h"
+#include "stm32f1xx_ll_cortex.h"
 #include "stm32f1xx_ll_utils.h"
 #include "stm32f1xx_ll_pwr.h"
-#include "stm32f1xx_ll_gpio.h"
 #include "stm32f1xx_ll_dma.h"
-
-#include "stm32f1xx_ll_exti.h"
+#include "stm32f1xx_ll_tim.h"
+#include "stm32f1xx_ll_gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -69,12 +68,12 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define BUTTON1_Pin GPIO_PIN_0
-#define BUTTON1_GPIO_Port GPIOA
-#define BUTTON2_Pin GPIO_PIN_1
-#define BUTTON2_GPIO_Port GPIOA
-#define BUTTON3_Pin GPIO_PIN_2
-#define BUTTON3_GPIO_Port GPIOA
+#define BUUTON1_Pin GPIO_PIN_0
+#define BUUTON1_GPIO_Port GPIOA
+#define BUUTON2_Pin GPIO_PIN_1
+#define BUUTON2_GPIO_Port GPIOA
+#define BUUTON3_Pin GPIO_PIN_2
+#define BUUTON3_GPIO_Port GPIOA
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

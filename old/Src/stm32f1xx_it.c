@@ -23,7 +23,7 @@
 #include "stm32f1xx_it.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "hd44780.h"
+
 #include <string.h>
 #include "ssd1306.h"
 #include "global.h"
@@ -202,6 +202,39 @@ void SysTick_Handler(void)
 /******************************************************************************/
 
 /**
+  * @brief This function handles TIM1 update interrupt.
+  */
+void TIM1_UP_IRQHandler(void)
+{
+  /* USER CODE BEGIN TIM1_UP_IRQn 0 */
+
+  /* USER CODE END TIM1_UP_IRQn 0 */
+  /* USER CODE BEGIN TIM1_UP_IRQn 1 */
+LL_TIM_ClearFlag_UPDATE(TIM1);
+
+  ssd1306_SetCursor(23,23);//?????????? ?????? ???????
+  ItoC(T1_min/10);
+  ItoC(T1_min%10);
+  ssd1306_WriteString(":",Font_11x18,Black);
+  ItoC(T1_sec/10);
+  ItoC(T1_sec%10);
+  ssd1306_WriteString(":",Font_11x18,Black);
+  ItoC(T1_msec);
+ 
+  ssd1306_SetCursor(23,43);
+  ItoC(T2_min/10);
+  ItoC(T2_min%10);
+  ssd1306_WriteString(":",Font_11x18,Black);
+  ItoC(T2_sec/10);
+  ItoC(T2_sec%10);
+  ssd1306_WriteString(":",Font_11x18,Black);
+  ItoC(T2_msec);
+  
+  ssd1306_UpdateScreen();
+  /* USER CODE END TIM1_UP_IRQn 1 */
+}
+
+/**
   * @brief This function handles TIM2 global interrupt.
   */
 void TIM2_IRQHandler(void)
@@ -252,7 +285,71 @@ void TIM3_IRQHandler(void)
 
   /* USER CODE END TIM3_IRQn 0 */
   /* USER CODE BEGIN TIM3_IRQn 1 */
+LL_TIM_ClearFlag_UPDATE(TIM3);
+  switch(Timer)
+  {
+  case Timer1:
+    if (Enable_Player1==1)
+    {
+      if(T1_msec==0)
+      {
+        if(T1_min==0&&T1_sec==0&&T1_msec==0)
+            {
+              Enable_Player1=0;
+              Timer=Timer2;
+              break;
+            }
+        T1_msec=9;
+        
+        if(T1_sec==0)
+        {
+          T1_sec=59;
+         
+            T1_min--;
+        }
+        else
+        {
+          T1_sec--;
+        }
+      }
+      else
+      {
+        T1_msec--;
+      }
+    }
+    break;
 
+  case Timer2:
+    if (Enable_Player2==1)
+    {
+      if(T2_msec==0)
+      {
+        if(T2_min==0&&T2_sec==0&&T2_msec==0)
+            {
+              Enable_Player2=0;
+              Timer=Timer1;
+              break;
+            }
+        T2_msec=9;
+        
+        if(T2_sec==0)
+        {
+          T2_sec=59;
+          T2_min--;
+        }
+        else
+        {
+          T2_sec--;
+        }
+      }
+      else
+      {
+        T2_msec--;
+      }
+    }
+    break;
+    break;
+  }
   /* USER CODE END TIM3_IRQn 1 */
 }
 
