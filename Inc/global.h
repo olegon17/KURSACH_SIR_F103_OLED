@@ -2,7 +2,7 @@
 #define SEC 0
 #define MSEC 0
 
-#define GPIOKEY GPIO
+#define GPIOKEY GPIOA
 #define BUTTON_1 GPIO_PIN_0
 #define BUTTON_2 GPIO_PIN_1
 #define BUTTON_3 GPIO_PIN_2
