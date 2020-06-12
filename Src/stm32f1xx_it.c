@@ -201,45 +201,12 @@ void SysTick_Handler(void)
 /******************************************************************************/
 
 /**
-  * @brief This function handles TIM1 update interrupt.
-  */
-void TIM1_UP_IRQHandler(void)
-{
-  /* USER CODE BEGIN TIM1_UP_IRQn 0 */
-LL_TIM_ClearFlag_UPDATE(TIM1);
-
-  ssd1306_SetCursor(23,23);//?????????? ?????? ???????
-  ItoC(T1_min/10);
-  ItoC(T1_min%10);
-  ssd1306_WriteString(":",Font_11x18,Black);
-  ItoC(T1_sec/10);
-  ItoC(T1_sec%10);
-  ssd1306_WriteString(":",Font_11x18,Black);
-  ItoC(T1_msec);
- 
-  ssd1306_SetCursor(23,43);
-  ItoC(T2_min/10);
-  ItoC(T2_min%10);
-  ssd1306_WriteString(":",Font_11x18,Black);
-  ItoC(T2_sec/10);
-  ItoC(T2_sec%10);
-  ssd1306_WriteString(":",Font_11x18,Black);
-  ItoC(T2_msec);
-  
-  ssd1306_UpdateScreen();
-  /* USER CODE END TIM1_UP_IRQn 0 */
-  /* USER CODE BEGIN TIM1_UP_IRQn 1 */
-
-  /* USER CODE END TIM1_UP_IRQn 1 */
-}
-
-/**
   * @brief This function handles TIM2 global interrupt.
   */
 void TIM2_IRQHandler(void)
 {
   /* USER CODE BEGIN TIM2_IRQn 0 */
-LL_TIM_ClearFlag_UPDATE(TIM2);
+  LL_TIM_ClearFlag_UPDATE(TIM2);
   if (HAL_GPIO_ReadPin(GPIOKEY,BUTTON_1)==0)
   {
     if (Enable_Player1==1)
@@ -257,18 +224,11 @@ LL_TIM_ClearFlag_UPDATE(TIM2);
     {
       if (HAL_GPIO_ReadPin(GPIOKEY,BUTTON_3)==0)
       {
-        Timer=Off;
-        T1_min=MIN;
-        T1_sec=SEC;
-        T1_msec=MSEC;
-        T2_min=MIN;
-        T2_sec=SEC;
-        T2_msec=MSEC;
-        Enable_Player1=1;
-        Enable_Player2=1;
+        Reset_State();
       }
     }
   }
+ // WRITE_REG(TIM2->SR, ~(TIM_SR_UIF));
   /* USER CODE END TIM2_IRQn 0 */
   /* USER CODE BEGIN TIM2_IRQn 1 */
 
@@ -282,6 +242,11 @@ void TIM3_IRQHandler(void)
 {
   /* USER CODE BEGIN TIM3_IRQn 0 */
 LL_TIM_ClearFlag_UPDATE(TIM3);
+//WRITE_REG(TIM3->CNT, 0x0000);
+  //WRITE_REG(TIM3->DIER, 0x0000001);
+  //WRITE_REG(TIM3->SR, 0x0000);
+  //WRITE_REG(TIM3->CNT, 0x0000);
+  //WRITE_REG(TIM3->CNT, 0x0000);
   switch(Timer)
   {
   case Timer1:
@@ -291,17 +256,34 @@ LL_TIM_ClearFlag_UPDATE(TIM3);
       {
         if(T1_min==0&&T1_sec==0&&T1_msec==0)
             {
-              Enable_Player1=0;
-              Timer=Timer2;
+              if (Enable_Player2==0)
+              {
+                //LL_TIM_DisableIT_UPDATE(TIM3);
+                //LL_TIM_DisableCounter(TIM3);
+                ssd1306_Fill(FON);
+                ssd1306_SetCursor(23,30);
+                ssd1306_WriteString("FINISH",Font_11x18,COLOR);
+                ssd1306_UpdateScreen();
+                ssd1306_Fill(FON);
+                //ssd1306_UpdateScreen();
+                //HAL_Delay(1);
+                Reset_State();
+                //LL_TIM_EnableIT_UPDATE(TIM3);
+                //LL_TIM_EnableCounter(TIM3);
+              }
+              else
+              {
+                Enable_Player1=0;
+                Timer=Timer2;
+              }
               break;
             }
-        T1_msec=9;
+        T1_msec=8;
         
         if(T1_sec==0)
         {
           T1_sec=59;
-         
-            T1_min--;
+          T1_min--;
         }
         else
         {
@@ -310,7 +292,8 @@ LL_TIM_ClearFlag_UPDATE(TIM3);
       }
       else
       {
-        T1_msec--;
+        T1_msec-=2;
+
       }
     }
     break;
@@ -322,11 +305,29 @@ LL_TIM_ClearFlag_UPDATE(TIM3);
       {
         if(T2_min==0&&T2_sec==0&&T2_msec==0)
             {
-              Enable_Player2=0;
-              Timer=Timer1;
+              if (Enable_Player1==0)
+              {
+                //LL_TIM_DisableIT_UPDATE(TIM3);
+                //LL_TIM_DisableCounter(TIM3);
+                ssd1306_Fill(FON);
+                ssd1306_SetCursor(23,30);
+                ssd1306_WriteString("FINISH",Font_11x18,COLOR);
+                ssd1306_UpdateScreen();
+                ssd1306_Fill(FON);
+                //ssd1306_UpdateScreen();
+                //HAL_Delay(1);
+                Reset_State();
+                //LL_TIM_EnableIT_UPDATE(TIM3);
+                //LL_TIM_EnableCounter(TIM3);
+              }
+              else
+              {
+                Enable_Player2=0;
+                Timer=Timer1;
+              }
               break;
             }
-        T2_msec=9;
+        T2_msec=8;
         
         if(T2_sec==0)
         {
@@ -340,15 +341,18 @@ LL_TIM_ClearFlag_UPDATE(TIM3);
       }
       else
       {
-        T2_msec--;
+        T2_msec-=2;;
       }
     }
     break;
-    break;
+    //break;
   }
+  WriteClock(T1_min,T1_sec,T1_msec,23);
+  WriteClock(T2_min,T2_sec,T2_msec,43);
+  ssd1306_UpdateScreen();
   /* USER CODE END TIM3_IRQn 0 */
   /* USER CODE BEGIN TIM3_IRQn 1 */
-
+//WRITE_REG(TIM3->SR, ~(TIM_SR_UIF));
   /* USER CODE END TIM3_IRQn 1 */
 }
 
